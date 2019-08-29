@@ -1,0 +1,100 @@
+<form class="form-horizontal" [formGroup]="formulario">
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <input type="text" hidden class="form-control" formControlName="id" id="id">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label for="descricao" class="control-label">Nome</label>
+                </div>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" [ngClass]="aplicaCssErro('descricao')"
+                        formControlName="descricao" id="descricao" placeholder="Nome">
+                </div>
+            </div>
+
+            <!-- <div formGroupName="contato"> -->
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label for="email" class="control-label">E-mail</label>
+                </div>
+                <div class="col-sm-12">
+                    <!-- [ngClass]="aplicaCssErro('contato.email')" -->
+                    <input type="text" class="form-control" [ngClass]="aplicaCssErro('email')" formControlName="email"
+                        id="email" placeholder="E-mail">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label for="telefone" class="control-label">Telefone</label>
+                </div>
+                <div class="col-sm-12">
+                    <!-- [ngClass]="aplicaCssErro('contato.telefone')" -->
+                    <input type="text" class="form-control" [ngClass]="aplicaCssErro('telefone')"
+                        formControlName="telefone" id="telefone" placeholder="84 99999-9999">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label for="cpf" class="control-label">CPF</label>
+                </div>
+                <div class="col-sm-12">
+                    <!-- [ngClass]="aplicaCssErro('contato.cpf')" -->
+                    <input type="text" class="form-control" [ngClass]="aplicaCssErro('cpf')" formControlName="cpf"
+                        id="cpf" placeholder="999.999.999-99">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    <div class="float-left">
+                        <h4>Clientes</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nome</th>
+                                <th>CPF</th>
+                                <th>E-mail</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of clientes">
+                                <td>{{item.id}}</td>
+                                <td>{{item.descricao}}</td>
+                                <td>{{item.email}}</td>
+                                <td>{{item.telefone}}</td>
+                                <td>
+                                    <span class="float-right">
+                                        <button (click)="atualizar(item)"
+                                            class="btn btn-outline-warning mb-1 btn-sm">Atualizar</button>
+                                        <button (click)="delete(item.id)"
+                                            class="btn btn-outline-danger mb-1 btn-sm">DEL</button>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- </div> -->
+    <!-- [disabled]="!formulario.valid" -->
+    <button (click)="onSubmit()" type="button" class="btn btn-primary">Submit</button>
+    <button (click)="cancelar()" type="button" class="btn btn-secondary">Cancelar</button>
+
+</form>

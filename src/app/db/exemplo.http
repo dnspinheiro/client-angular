@@ -1,0 +1,33 @@
+http://localhost:3000/clientes
+
+####
+http://localhost:3000/clientes/2
+
+####
+
+####
+
+POST http://localhost:3000/clientes HTTP/1.1
+Content-Type: application/json
+
+{
+    "descricao":"paulo",
+    "telefone":"84 99818-5708",
+    "email":"dein@df.com",
+    "cpf":"090.237.504-03"
+}
+
+###
+
+PUT http://localhost:3000/clientes/2 HTTP/1.1
+Content-Type: application/json
+
+{
+    "descricao":"paulo",
+    "telefone":"84 99818-5708",
+    "email":"dein@df.com",
+    "cpf":"090.237.504-03"
+}
+
+####
+DELETE http://localhost:3000/clientes/CPP84vM
