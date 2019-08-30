@@ -26,43 +26,33 @@ export class ClientesComponent extends DataFormComponent implements OnInit {
       email: [null, [Validators.required, Validators.email]],
       telefone: [null, [Validators.required, Validators.pattern('^[0-9]{1,2}\\s[0-9]{4,5}[-][0-9]{4,5}')]],
       cpf: [null, [Validators.required, Validators.pattern('^[0-9]{3}.?[0-9]{3}.?[0-9]{3}-?[0-9]{2}')]],
+      data: [null, [Validators.required, Validators.pattern('((\\d{2})|(\\d))\/((\\d{2})|(\\d))\/((\\d{4})|(\\d{2}))')]],
+      // data: [null, [Validators.required, Validators.pattern('^\\d{1,2}\/\\d{1,2}\/\\d{4}$')]],
       // })
     });
   }
 
   list() {
     this.clienteService.list().subscribe(data => {
-      console.log('data list', data);
       this.clientes = data;
     });
     // throw new Error("Method not implemented.");
   }
 
-  atualizar(item) {
-    console.log('item', item);
-
-    this.formulario.patchValue({
-      id: item.id,
-      descricao: item.descricao,
-      cpf: item.cpf,
-      telefone: item.telefone,
-      email: item.email,
-    });
-  }
-
   delete(id) {
     this.clienteService.remove(id).subscribe(data => {
       console.log('deleted');
+      this.list();
     });
     // throw new Error("Method not implemented.");
   }
 
   submit() {
-    console.log('form', this.formulario.value);
-
+    // this.getCampo('data').setValue(this.getCampo('data').value.replace(/\//g, ""));
     this.clienteService.save(
       this.formulario.value).subscribe(dados => {
-        // this.cancelar();
+        this.cancelar();
+        this.list();
       }, (error) => alert('error'));
   }
 

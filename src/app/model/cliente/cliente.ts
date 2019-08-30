@@ -3,5 +3,6 @@ export interface Cliente {
     telefone: string,
     cpf: string,
     email: string,
-    descricao: string
+    descricao: string,
+    data: string
 }

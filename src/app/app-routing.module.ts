@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DataFormComponent } from './shared/data-form.component';
 import { ClientesComponent } from './clientes/clientes.component';
+import { EmpresasComponent } from './empresas/empresas.component';
 
 
 const routes: Routes = [
-  // { path: 'dataForm', component: DataFormComponent },
   { path: 'clientes', component: ClientesComponent },
-  { path: '', pathMatch: 'full', redirectTo: 'clientes' }
+  { path: 'empresas', component: EmpresasComponent },
+  // { path: 'clientes', loadChildren: () => import('./clientes/clientes.component').then(m => m.ClientesComponent) },
+  { path: '', pathMatch: 'full', redirectTo: 'clientes' },
 ];
 
 @NgModule({
