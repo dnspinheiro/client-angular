@@ -4,7 +4,7 @@
         <div class="col-sm-6">
             <div class="form-group">
                 <div class="col-sm-12">
-                    <input type="text" hidden class="form-control" formControlName="id" id="id">
+                    <input type="text" class="form-control" hidden formControlName="id" id="id">
                 </div>
             </div>
 
@@ -51,7 +51,15 @@
                         id="cpf" placeholder="999.999.999-99">
                 </div>
             </div>
+
+
+            <!-- </div> -->
+            <!-- [disabled]="!formulario.valid" -->
+            <button (click)="onSubmit()" type="button" class="btn btn-primary">Submit</button>
+            <button (click)="cancelar()" type="button" class="btn btn-secondary">Cancelar</button>
         </div>
+
+
         <div class="col-sm-6">
             <div class="card">
                 <div class="card-header">
@@ -91,10 +99,5 @@
             </div>
         </div>
     </div>
-
-    <!-- </div> -->
-    <!-- [disabled]="!formulario.valid" -->
-    <button (click)="onSubmit()" type="button" class="btn btn-primary">Submit</button>
-    <button (click)="cancelar()" type="button" class="btn btn-secondary">Cancelar</button>
 
 </form>

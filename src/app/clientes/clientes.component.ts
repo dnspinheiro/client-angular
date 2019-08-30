@@ -20,6 +20,7 @@ export class ClientesComponent extends DataFormComponent implements OnInit {
 
   ngOnInit() {
     this.formulario = this.formBuilder.group({
+      id: [null],
       descricao: [null, Validators.required],
       // contato: this.formBuilder.group({
       email: [null, [Validators.required, Validators.email]],
@@ -61,7 +62,6 @@ export class ClientesComponent extends DataFormComponent implements OnInit {
 
     this.clienteService.save(
       this.formulario.value).subscribe(dados => {
-        console.log('dados', dados);
         // this.cancelar();
       }, (error) => alert('error'));
   }
