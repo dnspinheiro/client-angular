@@ -1,10 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { delay, tap, take } from 'rxjs/operators';
 import { FormBuilder } from '@angular/forms';
+import { Injector } from '@angular/core';
 
 export class CrudService {
-    constructor(protected http: HttpClient, private API_URL) {
+    protected http: HttpClient;
 
+    constructor(injector: Injector, private API_URL) {
+        this.http = injector.get(HttpClient);
     }
 
     listAll() {

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injector } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DataFormComponent } from '../shared/data-form.component';
 // import { Cliente } from '../model/cliente/cliente';
 import { HttpClient } from '@angular/common/http';
+import { CrudService } from '../shared/service/crud-service';
 
 @Component({
   selector: 'app-clientes',
@@ -10,13 +11,20 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./clientes.component.css']
 })
 export class ClientesComponent extends DataFormComponent implements OnInit {
-
-  constructor(protected formBuilder: FormBuilder, protected http: HttpClient) {
-    super(http, 'clientes');
+  // protected dataForm = 
+  service: any;
+  constructor(protected formBuilder: FormBuilder,
+    protected http: HttpClient,
+    protected injector: Injector) {
+    super(injector, 'clientes');
+    this.service = new CrudService(injector, 'empresas');
     this.list();
   }
 
   ngOnInit() {
+    this.listAll().subscribe(data => {
+      console.log('rsc', data);
+    });
     this.formulario = this.formBuilder.group({
       id: [null],
       descricao: [null, Validators.required],
