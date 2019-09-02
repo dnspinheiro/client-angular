@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ClientesComponent } from './clientes/clientes.component';
 import { RouteReuseStrategy } from '@angular/router';
-import { CustomReuseStrategy } from './shared/CustormReuseStrategy.class';
+import { CustomReuseStrategy } from './shared/router-reuse.class';
 import { EmpresasComponent } from './empresas/empresas.component';
 // import { Service } from './service/api.service';
 

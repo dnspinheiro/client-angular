@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ClienteService } from '../model/cliente/cliente.service';
 import { DataFormComponent } from '../shared/data-form.component';
-import { Cliente } from '../model/cliente/cliente';
+// import { Cliente } from '../model/cliente/cliente';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-clientes',
@@ -11,10 +11,8 @@ import { Cliente } from '../model/cliente/cliente';
 })
 export class ClientesComponent extends DataFormComponent implements OnInit {
 
-  clientes: Cliente[];
-
-  constructor(protected formBuilder: FormBuilder, protected clienteService: ClienteService) {
-    super(formBuilder);
+  constructor(protected formBuilder: FormBuilder, protected http: HttpClient) {
+    super(formBuilder, http, 'clientes');
     this.list();
   }
 
@@ -31,29 +29,4 @@ export class ClientesComponent extends DataFormComponent implements OnInit {
       // })
     });
   }
-
-  list() {
-    this.clienteService.list().subscribe(data => {
-      this.clientes = data;
-    });
-    // throw new Error("Method not implemented.");
-  }
-
-  delete(id) {
-    this.clienteService.remove(id).subscribe(data => {
-      console.log('deleted');
-      this.list();
-    });
-    // throw new Error("Method not implemented.");
-  }
-
-  submit() {
-    // this.getCampo('data').setValue(this.getCampo('data').value.replace(/\//g, ""));
-    this.clienteService.save(
-      this.formulario.value).subscribe(dados => {
-        this.cancelar();
-        this.list();
-      }, (error) => alert('error'));
-  }
-
 }

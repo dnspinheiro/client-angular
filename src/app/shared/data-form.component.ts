@@ -1,20 +1,45 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { CrudService } from './service/crud-service';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-data-form',
   template: '<div></div>',
   // styleUrls: ['./data-form.component.css']
 })
-export abstract class DataFormComponent {
+export abstract class DataFormComponent extends CrudService {
   formulario: FormGroup;
+  resources: any;
 
-  constructor(protected formBuilder: FormBuilder) {
+  constructor(protected formBuilder: FormBuilder, protected http: HttpClient, protected ENDPOINT: String) {
+    super(formBuilder, http, `${environment.api}clientes`);
   }
 
-  abstract submit();
-  abstract list();
-  abstract delete(id);
+  submit() {
+    // this.getCampo('data').setValue(this.getCampo('data').value.replace(/\//g, ""));
+    this.save(
+      this.formulario.value).subscribe(dados => {
+        this.cancelar();
+        this.list();
+      }, (error) => alert('error'));
+  }
+
+  list() {
+    this.listAll().subscribe(data => {
+      this.resources = data;
+    });
+    // throw new Error("Method not implemented.");
+  }
+
+  delete(id) {
+    this.remove(id).subscribe(data => {
+      console.log('deleted');
+      this.list();
+    });
+    // throw new Error("Method not implemented.");
+  }
 
   onSubmit() {
     // console.log(this.formulario);

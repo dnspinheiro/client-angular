@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ClienteService } from './model/cliente/cliente.service';
+import { DataFormComponent } from './shared/data-form.component';
 
 @Component({
   selector: 'app-root',
@@ -11,13 +11,11 @@ export class AppComponent {
   title = 'base-project';
   lista: any;
 
-  constructor(private clienteService: ClienteService) {
+  constructor() {
     this.get();
   }
 
   get() {
-    this.clienteService.list().subscribe(data => {
-      this.lista = data.data;
-    });
+
   }
 }
