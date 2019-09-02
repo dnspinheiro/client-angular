@@ -3,7 +3,7 @@ import { delay, tap, take } from 'rxjs/operators';
 import { FormBuilder } from '@angular/forms';
 
 export class CrudService {
-    constructor(protected formBuilder: FormBuilder, protected http: HttpClient, private API_URL) {
+    constructor(protected http: HttpClient, private API_URL) {
 
     }
 
@@ -24,6 +24,16 @@ export class CrudService {
 
     private update(record) {
         return this.http.put(`${this.API_URL}/${record['id']}`, record).pipe(take(1));
+    }
+
+    upload(files: Set<File>) {
+        const formData = new FormData();
+        files.forEach(file => formData.append('file', file, file.name));
+
+        return this.http.post(`${this.API_URL}`, formData, {
+            observe: 'events',
+            reportProgress: true
+        });
     }
 
     save(record) {

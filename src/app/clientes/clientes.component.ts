@@ -12,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 export class ClientesComponent extends DataFormComponent implements OnInit {
 
   constructor(protected formBuilder: FormBuilder, protected http: HttpClient) {
-    super(formBuilder, http, 'clientes');
+    super(http, 'clientes');
     this.list();
   }
 
@@ -26,6 +26,7 @@ export class ClientesComponent extends DataFormComponent implements OnInit {
       cpf: [null, [Validators.required, Validators.pattern('^[0-9]{3}.?[0-9]{3}.?[0-9]{3}-?[0-9]{2}')]],
       data: [null, [Validators.required, Validators.pattern('((\\d{2})|(\\d))\/((\\d{2})|(\\d))\/((\\d{4})|(\\d{2}))')]],
       // data: [null, [Validators.required, Validators.pattern('^\\d{1,2}\/\\d{1,2}\/\\d{4}$')]],
+      // files: [null]
       // })
     });
   }

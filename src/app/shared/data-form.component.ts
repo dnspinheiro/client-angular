@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { CrudService } from './service/crud-service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEventType, HttpEvent } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -12,9 +12,11 @@ import { environment } from 'src/environments/environment';
 export abstract class DataFormComponent extends CrudService {
   formulario: FormGroup;
   resources: any;
+  files: Set<File>;
+  progress = 0;
 
-  constructor(protected formBuilder: FormBuilder, protected http: HttpClient, protected ENDPOINT: String) {
-    super(formBuilder, http, `${environment.api + ENDPOINT}`);
+  constructor(protected http: HttpClient, protected ENDPOINT: String) {
+    super(http, `${environment.api + ENDPOINT}`);
   }
 
   submit() {
@@ -45,10 +47,37 @@ export abstract class DataFormComponent extends CrudService {
   onSubmit() {
     // console.log(this.formulario);
     if (this.formulario.valid) {
+      if (this.files && this.files.size > 0) {
+        this.upload(this.files).subscribe((event: HttpEvent<Object>) => {
+          // HttpEventType
+          console.log(event);
+          if (event.type == HttpEventType.Response) {
+            console.log('upload concluído');
+          } else if (event.type == HttpEventType.UploadProgress) {
+            const percent = Math.round((event.loaded * 100) / event.total);
+            console.log('progresso', percent);
+            this.progress = percent;
+          }
+        });
+      }
       this.submit();
     } else {
       this.validForm();
     }
+  }
+
+  onChange(event) {
+    const selectFiles = <FileList>event.srcElement.files;
+    // document.getElementById('filesLabel').innerHTML = selectFiles[0].name;
+
+    const fileNames = [];
+    this.files = new Set();
+    for (let i = 0; i < selectFiles.length; i++) {
+      fileNames.push(selectFiles[i].name);
+      this.files.add(selectFiles[i]);
+    }
+    document.getElementById('filesLabel').innerHTML = fileNames.join(", ");
+    this.progress = 0;
   }
 
   validForm() {
@@ -75,14 +104,14 @@ export abstract class DataFormComponent extends CrudService {
     }
   }
 
-  verificaValidTouched(campo) {
-    return !this.formulario.get(campo).valid && this.formulario.get(campo).touched;
-  }
-
   aplicaCssErro(campo) {
     return {
       'is-invalid': this.verificaValidTouched(campo)
     };
+  }
+
+  verificaValidTouched(campo) {
+    return !this.formulario.get(campo).valid && this.formulario.get(campo).touched;
   }
 
   getCampo(campo: string) {
