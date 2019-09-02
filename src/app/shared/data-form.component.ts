@@ -14,7 +14,7 @@ export abstract class DataFormComponent extends CrudService {
   resources: any;
 
   constructor(protected formBuilder: FormBuilder, protected http: HttpClient, protected ENDPOINT: String) {
-    super(formBuilder, http, `${environment.api}clientes`);
+    super(formBuilder, http, `${environment.api + ENDPOINT}`);
   }
 
   submit() {
@@ -24,6 +24,7 @@ export abstract class DataFormComponent extends CrudService {
         this.cancelar();
         this.list();
       }, (error) => alert('error'));
+    // throw new Error("Method not implemented.");
   }
 
   list() {
