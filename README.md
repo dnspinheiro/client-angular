@@ -1,27 +1,25 @@
-# BaseProject
+# Cadastro de Cliente em Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.0.
+Projeto realizado para desafio da ESig.
+
+## Install
+
+Execute o comando `npm install` para instalar as dependências adicionadas ao projeto no package.json
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Exceute `ng serve` para rodar um servidor de desenvolvimento. Abra `http://localhost:4200/`. A aplicação automaticamente será recarregada caso tenha alteração no projeto.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Para buildar o projeto, basta executar `ng build`. Será gerado códigos para deploy no diretório `dist/`. Caso use o `--prod` trará configurações de projeto para ambiente de produção, por exemplom o environment.
 
-## Running unit tests
+## OBS
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Validação em formulário sem máscara. Classe de crud-service extendida para uso em componente. 
 
-## Running end-to-end tests
+## NativeScript
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Native Script instalado em FrontEnd e migração de component, route e module realizada através de NativeScript CLI, Angular CLI e validações com o tns.
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
