@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  // api: 'http://ifarmapi.agisrn.com:9050/rest/'
-  api: 'http://localhost:3000/'
+  api: 'https://esig-cliente.herokuapp.com/'
 };
 
 /*

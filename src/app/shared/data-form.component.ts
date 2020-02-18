@@ -2,7 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { CrudService } from './service/crud-service';
 import { HttpClient, HttpEventType, HttpEvent } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-data-form',
@@ -32,13 +32,15 @@ export abstract class DataFormComponent extends CrudService {
 
   list() {
     this.listAll().subscribe(data => {
+      console.log('rsc', data);
+
       this.resources = data;
     });
     // throw new Error("Method not implemented.");
   }
 
-  OnDelete(id) {
-    this.remove(id).subscribe(data => {
+  OnDelete(_item) {
+    this.remove(_item.id).subscribe(data => {
       console.log('deleted');
       this.list();
     });

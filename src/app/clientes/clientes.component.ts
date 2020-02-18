@@ -16,8 +16,8 @@ export class ClientesComponent extends DataFormComponent implements OnInit {
   constructor(protected formBuilder: FormBuilder,
     protected http: HttpClient,
     protected injector: Injector) {
-    super(injector, 'clientes');
-    this.service = new CrudService(injector, 'empresas');
+    super(injector, 'cliente');
+    this.service = new CrudService(injector, 'cliente');
     this.list();
   }
 
@@ -27,7 +27,7 @@ export class ClientesComponent extends DataFormComponent implements OnInit {
     });
     this.formulario = this.formBuilder.group({
       id: [null],
-      descricao: [null, Validators.required],
+      nome: [null, Validators.required],
       // contato: this.formBuilder.group({
       email: [null, [Validators.required, Validators.email]],
       telefone: [null, [Validators.required, Validators.pattern('^[0-9]{1,2}\\s[0-9]{4,5}[-][0-9]{4,5}')]],

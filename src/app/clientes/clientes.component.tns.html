@@ -1,0 +1,119 @@
+<ActionBar title="Clientes"></ActionBar>
+<StackLayout>
+    <ListView [items]="resources$ | async">
+        <ng-template let-item="item">
+            <GridLayout columns="*, auto, auto, auto">
+                <Label [text]="item.nome"></Label>
+                <Label [text]="item.email" col="1"></Label>
+                <Button [text]="UP" (tap)="carregarDadosForm(item)"></Button>
+                <Button [text]="Del" (tap)="OnDelete(item)"></Button>
+            </GridLayout>
+        </ng-template>
+    </ListView>
+</StackLayout>
+<!-- <div class="row">
+    <div class="col-md-6 col-sm-12">
+        <form class="form-horizontal" [formGroup]="formulario">
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" hidden formControlName="id" id="id">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label for="nome" class="control-label">Nome</label>
+                </div>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" [ngClass]="aplicaCssErro('nome')" formControlName="nome"
+                        id="nome" placeholder="Nome">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label for="email" class="control-label">E-mail</label>
+                </div>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" [ngClass]="aplicaCssErro('email')" formControlName="email"
+                        id="email" placeholder="E-mail">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label for="telefone" class="control-label">Telefone</label>
+                </div>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" [ngClass]="aplicaCssErro('telefone')"
+                        formControlName="telefone" id="telefone" placeholder="84 99999-9999">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label for="cpf" class="control-label">CPF</label>
+                </div>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" [ngClass]="aplicaCssErro('cpf')" formControlName="cpf"
+                        id="cpf" placeholder="999.999.999-99">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label for="data" class="control-label">Data de nascimento</label>
+                </div>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" [ngClass]="aplicaCssErro('data')" formControlName="data"
+                        id="data" placeholder="99/99/9999">
+                </div>
+            </div>
+
+            <br>
+            <button (click)="onSubmit()" type="button" class="btn btn-primary">Enviar</button>
+            <button (click)="cancelar()" type="button" class="btn btn-secondary">Cancelar</button>
+        </form>
+    </div>
+
+    <div class="col-md-6 col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="float-left">
+                    <h6>Clientes</h6>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive-md">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nome</th>
+                                <th>E-mail</th>
+                                <th>Telefone</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of resources">
+                                <td>{{item.id}}</td>
+                                <td>{{item.nome}}</td>
+                                <td>{{item.email}}</td>
+                                <td>{{item.telefone}}</td>
+                                <td>
+                                    <span class="float-right">
+                                        <button (click)="carregarDadosForm(item)"
+                                            class="btn btn-outline-warning mb-1 btn-sm">UP</button>
+                                        <button (click)="OnDelete(item)"
+                                            class="btn btn-outline-danger mb-1 btn-sm">DEL</button>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
