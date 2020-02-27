@@ -99,11 +99,14 @@ export abstract class DataFormComponent extends CrudService {
 
   // limpa form e carrega novos dados em form
   carregarDadosForm(item) {
+    console.log('edit item');
+
     this.cancelar();
     this.formulario.patchValue(item);
   }
 
   cancelar() {
+    console.log('limpa formulario');
     this.formulario.reset();
   }
 

@@ -1,16 +1,33 @@
 <ActionBar title="Clientes"></ActionBar>
-<StackLayout>
-    <ListView [items]="resources$ | async">
-        <ng-template let-item="item">
-            <GridLayout columns="*, auto, auto, auto">
-                <Label [text]="item.nome"></Label>
-                <Label [text]="item.email" col="1"></Label>
-                <Button [text]="UP" (tap)="carregarDadosForm(item)"></Button>
-                <Button [text]="Del" (tap)="OnDelete(item)"></Button>
-            </GridLayout>
-        </ng-template>
-    </ListView>
-</StackLayout>
+<ScrollView orientation="vertical">
+    <StackLayout [formGroup]="formulario">
+        <TextField hint="Nome" [formControl]="nome"></TextField>
+
+        <TextField hint="Email" formControlName="email"></TextField>
+
+        <TextField hint="Telefone" formControlName="telefone"></TextField>
+
+        <TextField hint="CPF" formControlName="cpf"></TextField>
+
+        <TextField hint="Data" formControlName="data"></TextField>
+
+        <Button text="Enviar" (tap)="onSubmit()"></Button>
+        <Button text="Cancelar" (tap)="cancelar()"></Button>
+        <!-- <Label text="{{ formulario | json }}"></Label> -->
+        <ListView height="150" [items]="resources" class="list-group">
+            <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+                <GridLayout columns="*,*,*,*,*">
+                    <Label [text]="item.id" class="list-group-item"></Label>
+                    <Label col="1" [text]="item.nome" class="list-group-item"></Label>
+                    <Label col="2" [text]="item.email" class="list-group-item"></Label>
+                    <Button col="3" text="UP" (tap)="carregarDadosForm(item)" class="list-group-item"></Button>
+                    <Button col="4" text="DEL" (tap)="OnDelete(item)" class="list-group-item"></Button>
+                </GridLayout>
+            </ng-template>
+        </ListView>
+    </StackLayout>
+</ScrollView>
+
 <!-- <div class="row">
     <div class="col-md-6 col-sm-12">
         <form class="form-horizontal" [formGroup]="formulario">
